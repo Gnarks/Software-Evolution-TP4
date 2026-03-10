@@ -10,8 +10,7 @@
        pkgs.mkShell {
          packages = [
            pkgs.gcc
-           pkgs.python3
-           pkgs.podman
+           pkgs.jdk25_headless
          ];
        };
    };
