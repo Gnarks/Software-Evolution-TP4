@@ -1,0 +1,10 @@
+FROM alpine AS buildtime-stage
+RUN apk add --no-cache build-base=0.5-r3
+WORKDIR /app
+COPY rnd.c .
+RUN gcc rnd.c -o rnd
+
+FROM alpine AS runtime-stage
+COPY --from=buildtime-stage /app/rnd /app/rnd
+WORKDIR /app
+ENTRYPOINT ["/app/rnd"]
